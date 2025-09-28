@@ -7,7 +7,7 @@
     <application
         android:label="AI Scribe Copilot"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/icon">
         <service android:name=".MicService"
                  android:foregroundServiceType="microphone"
                  android:exported="false">
