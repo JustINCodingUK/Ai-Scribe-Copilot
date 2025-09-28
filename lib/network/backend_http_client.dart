@@ -30,7 +30,7 @@ class BackendHttpClient {
       body: request,
     );
     if (response.statusCode == 200) {
-      final body = jsonDecode(response.body)["_embedded"];
+      final body = jsonDecode(response.body);
       return body["sessionId"];
     }
     throw Exception("Failed to create session");
@@ -75,7 +75,7 @@ class BackendHttpClient {
       body: request,
     );
     if (response.statusCode == 200) {
-      final body = jsonDecode(response.body)["_embedded"];
+      final body = jsonDecode(response.body);
       return "$baseUrl${body["url"]}";
     }
     throw Exception("Failed to get upload url");
@@ -109,7 +109,7 @@ class BackendHttpClient {
     final url = Uri.parse("$baseUrl/v1/patients?userId=$userId");
     final response = await get(url);
     if (response.statusCode == 200) {
-      final body = jsonDecode(response.body)["_embedded"];
+      final body = jsonDecode(response.body);
       for (Map<String, dynamic> patient in body["patients"]) {
         yield Patient(patientId: patient["patientId"]!, name: patient["name"]!);
       }
@@ -129,7 +129,7 @@ class BackendHttpClient {
       body: request,
     );
     if (response.statusCode == 200) {
-      return jsonDecode(response.body)["_embedded"]["patient"]["patientId"];
+      return jsonDecode(response.body)["patient"]["patientId"];
     } else {
       throw Exception("Failed to create patient");
     }
@@ -139,7 +139,7 @@ class BackendHttpClient {
     final url = Uri.parse("$baseUrl/v1/fetch-session-by-patient/$patientId");
     final response = await get(url);
     if (response.statusCode == 200) {
-      final body = jsonDecode(response.body)["_embedded"];
+      final body = jsonDecode(response.body);
       for (Map<String, dynamic> session in body["sessions"]) {
         yield Session(
           sessionId: session["id"]!,

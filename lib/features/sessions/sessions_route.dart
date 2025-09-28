@@ -87,6 +87,7 @@ class SessionsRoute extends StatelessWidget {
             onPressed: () {
               context.read<SessionsBloc>().add(CreateSessionEvent());
             },
+            child: Icon(Icons.add),
           ),
           body: child,
         );
